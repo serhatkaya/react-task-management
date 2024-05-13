@@ -7,7 +7,7 @@ function Layout() {
     <>
       <div className="min-h-screen">
         <Header />
-        <div className="container mx-auto py-8">
+        <div className="container mx-auto px-4 mt-4 py-4 rounded-[4px] bg-secondary">
           <Outlet />
         </div>
       </div>
