@@ -6,7 +6,7 @@ type ErrorResponse = {
 };
 
 // Base URL for your API
-const BASE_URL = 'https://api-gamma-flax.vercel.app';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Define a function to handle errors
 const handleError = (error: any): ErrorResponse => {
@@ -19,21 +19,27 @@ const getToken = () => {
   return store.get() ? store.get()['token'] : '';
 };
 
+const getHeaders = () => {
+  const token = getToken();
+
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `${token}`;
+  }
+
+  return headers;
+};
+
 // Define functions for common HTTP methods
 
 const get = async <T>(url: string): Promise<T> => {
   try {
-    const token = getToken();
-    const headers = {
-      'Content-Type': 'application/json',
-    };
-
-    if (token) {
-      headers['Authorization'] = `${token}`;
-    }
     const response = await fetch(`${BASE_URL}/${url}`, {
       method: 'GET',
-      headers,
+      headers: getHeaders(),
     });
 
     if (!response.ok) {
@@ -48,18 +54,9 @@ const get = async <T>(url: string): Promise<T> => {
 
 const post = async <T>(url: string, data: any): Promise<T> => {
   try {
-    const token = getToken();
-    const headers = {
-      'Content-Type': 'application/json',
-    };
-
-    if (token) {
-      headers['Authorization'] = `${token}`;
-    }
-
     const response = await fetch(`${BASE_URL}/${url}`, {
       method: 'POST',
-      headers,
+      headers: getHeaders(),
       body: JSON.stringify(data),
     });
     if (!response.ok) {
@@ -76,9 +73,7 @@ const put = async <T>(url: string, data: any): Promise<T> => {
   try {
     const response = await fetch(`${BASE_URL}/${url}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getHeaders(),
       body: JSON.stringify(data),
     });
     if (!response.ok) {
@@ -95,9 +90,7 @@ const patch = async <T>(url: string, data: any): Promise<T> => {
   try {
     const response = await fetch(`${BASE_URL}/${url}`, {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getHeaders(),
       body: JSON.stringify(data),
     });
     if (!response.ok) {
@@ -114,6 +107,7 @@ const remove = async <T>(url: string): Promise<T> => {
   try {
     const response = await fetch(`${BASE_URL}/${url}`, {
       method: 'DELETE',
+      headers: getHeaders(),
     });
     if (!response.ok) {
       throw new Error('Failed to delete data');

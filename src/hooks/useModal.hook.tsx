@@ -5,8 +5,8 @@ const useModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  const open = (content) => {
-    setModalContent(content);
+  const open = (content, title: string) => {
+    setModalContent({ content, title });
     setIsModalOpen(true);
   };
 
@@ -19,8 +19,8 @@ const useModal = () => {
     open,
     close,
     Modal: () => (
-      <Modal isOpen={isModalOpen} onClose={close}>
-        {modalContent}
+      <Modal isOpen={isModalOpen} onClose={close} title={modalContent?.title}>
+        {modalContent?.content}
       </Modal>
     ),
   };

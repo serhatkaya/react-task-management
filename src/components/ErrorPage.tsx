@@ -1,10 +1,8 @@
-import { useNavigate, useRouteError } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from './ui/Button';
 
 export default function ErrorPage() {
-  const error = useRouteError();
   const navigate = useNavigate();
-  console.error(error);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">

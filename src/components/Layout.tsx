@@ -5,8 +5,6 @@ import Header from './Header';
 
 function Layout() {
   const { isLoading, Loader } = useLoader();
-
-  console.log('lala');
   return (
     <>
       <Loader isLoading={isLoading} />

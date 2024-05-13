@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Authenticated } from './components/Authenticated.tsx';
 import ErrorPage from './components/ErrorPage.tsx';
 import Layout from './components/Layout.tsx';
@@ -10,9 +13,8 @@ import Login from './pages/Login.tsx';
 import Register from './pages/Register.tsx';
 import Tasks from './pages/Tasks.tsx';
 import { AuthProvider } from './providers/AuthProvider';
-import reportWebVitals from './reportWebVitals.ts';
-import { Provider } from 'react-redux';
 import store from './redux/store.ts';
+import reportWebVitals from './reportWebVitals.ts';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>

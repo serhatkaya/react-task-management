@@ -116,11 +116,10 @@ const Register = () => {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className={` ${
-              errors.confirmPassword
-                ? 'border-red-500'
-                : 'border-gray-300 focus:border-accent'
-            }`}
+            className={cn(
+              errors.confirmPassword && 'border-red-500',
+              !errors.confirmPassword && 'border-gray-300 focus:border-accent'
+            )}
             placeholder="Confirm your password"
             required
           />

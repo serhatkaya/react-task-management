@@ -23,13 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   type = 'button',
 }) => {
   const styles: any = {
-    primary: [
-      'text-white',
-      'font-bold',
-      'bg-accent',
-      'active:bg-pressed',
-      'hover:bg-hover',
-    ],
+    primary: ['text-white', 'bg-accent', 'active:bg-pressed', 'hover:bg-hover'],
     secondary: [
       'text-accent',
       'border-accent',

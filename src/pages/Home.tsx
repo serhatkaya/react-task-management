@@ -16,17 +16,17 @@ const Home = () => {
       <section className="py-12">
         <div className="container mx-auto">
           <h2 className="text-2xl font-bold mb-8 text-placeholder text-center">Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card icon="📝" title="Task Creation">
               Easily create and organize tasks with our intuitive interface.
             </Card>
             <Card icon="🔄" title="Task Tracking">
               Keep track of your tasks and monitor their progress effortlessly.
             </Card>
-            <Card icon="🗂️" title="Categorization">
+            {/* <Card icon="🗂️" title="Categorization">
               Organize tasks into categories for better management and
               prioritization.
-            </Card>
+            </Card> */}
           </div>
         </div>
       </section>
