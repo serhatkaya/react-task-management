@@ -5,6 +5,7 @@ import { CurrentUser } from '../types/current-user.i';
 import { StorageSet } from '../utils/storage-set.util';
 
 const AuthContext = createContext<IAuthContext>({
+  tokens: null,
   auth: null, // Replace with your default auth state
   setAuth: () => {
     throw new Error(
@@ -75,7 +76,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   };
   return (
-    <AuthContext.Provider value={{ auth, setAuth, isAuthenticated, logout }}>
+    <AuthContext.Provider
+      value={{ tokens, auth, setAuth, isAuthenticated, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -1,3 +1,5 @@
+import { StorageSet } from './storage-set.util';
+
 // Define a generic type for error data
 type ErrorResponse = {
   message: string;
@@ -11,11 +13,29 @@ const handleError = (error: any): ErrorResponse => {
   return { message: error.message || 'An error occurred' };
 };
 
+const getToken = () => {
+  const store = new StorageSet('auth');
+
+  return store.get() ? store.get()['token'] : '';
+};
+
 // Define functions for common HTTP methods
 
 const get = async <T>(url: string): Promise<T> => {
   try {
-    const response = await fetch(`${BASE_URL}/${url}`);
+    const token = getToken();
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (token) {
+      headers['Authorization'] = `${token}`;
+    }
+    const response = await fetch(`${BASE_URL}/${url}`, {
+      method: 'GET',
+      headers,
+    });
+
     if (!response.ok) {
       throw new Error('Failed to fetch data');
     }
@@ -28,11 +48,18 @@ const get = async <T>(url: string): Promise<T> => {
 
 const post = async <T>(url: string, data: any): Promise<T> => {
   try {
+    const token = getToken();
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    if (token) {
+      headers['Authorization'] = `${token}`;
+    }
+
     const response = await fetch(`${BASE_URL}/${url}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(data),
     });
     if (!response.ok) {

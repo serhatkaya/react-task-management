@@ -5,6 +5,7 @@ export interface IAuthContext {
   setAuth: (currentUser: AuthenticateResponse) => void; // Replace 'any' with the actual type of your auth state
   isAuthenticated: () => boolean;
   logout: () => Promise<any>;
+  tokens: AuthenticateResponse | null;
 }
 
 export interface AuthenticateResponse {

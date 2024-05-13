@@ -11,6 +11,8 @@ import Register from './pages/Register.tsx';
 import Tasks from './pages/Tasks.tsx';
 import { AuthProvider } from './providers/AuthProvider';
 import reportWebVitals from './reportWebVitals.ts';
+import { Provider } from 'react-redux';
+import store from './redux/store.ts';
 
 const router = createBrowserRouter([
   {
@@ -44,9 +46,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>
 );
 
