@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Input from '../components/Input';
+import Input from '../components/ui/Input';
 import { apiClient } from '../utils/http.util';
 import { cn } from '../utils/tw.util';
 import useAuth from '../hooks/useAuth.hook';

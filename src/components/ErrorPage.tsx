@@ -1,7 +1,9 @@
-import { useRouteError } from 'react-router-dom';
+import { useNavigate, useRouteError } from 'react-router-dom';
+import Button from './ui/Button';
 
 export default function ErrorPage() {
   const error = useRouteError();
+  const navigate = useNavigate();
   console.error(error);
 
   return (
@@ -11,6 +13,7 @@ export default function ErrorPage() {
         <p className="text-lg text-gray-800">
           Sorry, an unexpected error has occurred.
         </p>
+        <Button onClick={() => navigate('/')}>Go to home</Button>
       </div>
     </div>
   );

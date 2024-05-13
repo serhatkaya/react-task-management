@@ -1,4 +1,4 @@
-import { cn } from '../utils/tw.util';
+import { cn } from '../../utils/tw.util';
 
 interface InputProps {
   onClick?: () => void;

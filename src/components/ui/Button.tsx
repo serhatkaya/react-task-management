@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { cn } from '../utils/tw.util';
+import { cn } from '../../utils/tw.util';
 
 interface ButtonProps {
   onClick?: () => void;
