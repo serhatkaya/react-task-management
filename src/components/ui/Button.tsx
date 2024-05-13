@@ -5,7 +5,8 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   children?: ReactNode;
-  type?: 'primary' | 'secondary';
+  bType?: 'primary' | 'secondary';
+  type?: 'button' | 'submit' | 'reset';
   size?: 'lg' | 'md' | 'sm';
   rounded?: boolean;
 }
@@ -13,10 +14,11 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
-  type = 'primary',
+  bType = 'primary',
   size = 'md',
   rounded,
   className,
+  type = 'button',
 }) => {
   const styles: any = {
     primary: [
@@ -44,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
   const defaultStyles =
     'rounded focus:outline-none focus:shadow-outline rounded-[4px]';
 
-  const buttonStyle = styles[type] || styles['primary'];
+  const buttonStyle = styles[bType] || styles['primary'];
 
   return (
     <button
@@ -55,6 +57,7 @@ const Button: React.FC<ButtonProps> = ({
         rounded && 'rounded-[50px]',
         className
       )}
+      type={type}
       onClick={onClick}
     >
       {children}

@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
-import { cn } from '../utils/tw.util';
 import { apiClient } from '../utils/http.util';
+import { cn } from '../utils/tw.util';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -130,12 +131,9 @@ const Register = () => {
           )}
         </div>
         <div className="text-center">
-          <button
-            type="submit"
-            className="bg-accent text-white py-2 px-4 rounded hover:bg-opacity-75 transition-colors"
-          >
+          <Button type="submit" bType="secondary" className="w-full">
             Register
-          </button>
+          </Button>
         </div>
       </form>
     </div>

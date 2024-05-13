@@ -1,22 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth.hook';
 import { cn } from '../utils/tw.util';
 import viteLogo from '/vite.svg';
 
 const Header = () => {
-  // For demonstration purposes, assume the user is logged in
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
   return (
     <header className="bg-accent">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
-        <div className="flex items-center">
-          <img
-            src={viteLogo}
-            className={cn('logo', 'w-10', 'h-10', 'mr-2')}
-            alt="Vite logo"
-          />
-          <span className="text-white font-bold text-lg">Taskify</span>
-        </div>
+        <Link to="/">
+          <div className="flex items-center">
+            <img
+              src={viteLogo}
+              className={cn('logo', 'w-10', 'h-10', 'mr-2')}
+              alt="Vite logo"
+            />
+            <span className="text-white font-bold text-lg">Taskify</span>
+          </div>
+        </Link>
         <nav>
           <ul className="flex space-x-4">
             <li>
@@ -34,7 +36,7 @@ const Header = () => {
                 <li>
                   <button
                     className="text-white hover:text-white"
-                    onClick={() => console.log('Logout')}
+                    onClick={() => logout().then(() => navigate('/'))}
                   >
                     Logout
                   </button>

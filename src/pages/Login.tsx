@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
+import useAuth from '../hooks/useAuth.hook';
 import { apiClient } from '../utils/http.util';
 import { cn } from '../utils/tw.util';
-import useAuth from '../hooks/useAuth.hook';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { setAuth } = useAuth();
@@ -30,7 +31,7 @@ const Login = () => {
     let valid = true;
     const newErrors = { ...errors };
     if (formData.username.trim() === '') {
-      newErrors.username = 'Username or email is required';
+      newErrors.username = 'Username is required';
       valid = false;
     }
     if (formData.password.trim() === '') {
@@ -58,7 +59,7 @@ const Login = () => {
             htmlFor="username"
             className="block text-gray-700 font-medium mb-2"
           >
-            Username or Email
+            Username
           </label>
           <Input
             type="text"
@@ -71,7 +72,7 @@ const Login = () => {
                 ? 'border-red-500'
                 : 'border-gray-300 focus:border-accent'
             }`}
-            placeholder="Enter your username or email"
+            placeholder="Enter your username"
           />
           {errors.username && (
             <p className="text-red-500 text-sm mt-1">{errors.username}</p>
@@ -103,12 +104,9 @@ const Login = () => {
           )}
         </div>
         <div className="text-center">
-          <button
-            type="submit"
-            className="bg-accent text-white py-2 px-4 rounded hover:bg-opacity-75 transition-colors"
-          >
+          <Button bType="secondary" type="submit" className="w-full">
             Login
-          </button>
+          </Button>
         </div>
       </form>
     </div>
