@@ -15,7 +15,7 @@ const Header = () => {
             className={cn('logo', 'w-10', 'h-10', 'mr-2')}
             alt="Vite logo"
           />
-          <span className="text-white font-bold text-lg">Your App Name</span>
+          <span className="text-white font-bold text-lg">Taskify</span>
         </div>
         <nav>
           <ul className="flex space-x-4">
