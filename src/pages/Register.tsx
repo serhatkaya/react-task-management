@@ -3,8 +3,10 @@ import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { apiClient } from '../utils/http.util';
 import { cn } from '../utils/tw.util';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -47,7 +49,7 @@ const Register = () => {
       setErrors(newErrors);
       return;
     }
-    apiClient.post('auth/register', formData);
+    apiClient.post('auth/register', formData).then(() => navigate('/login'));
   };
 
   return (
